@@ -13,6 +13,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # install dependencies
+RUN apt install -y python3
 RUN pip install --upgrade pip
 
 # copy whole project to your docker home directory.
@@ -23,4 +24,4 @@ RUN pip install -r requirements.txt
 
 EXPOSE 8000
 
-CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "djangosandbox.wsgi:application"]
+CMD python3 manage.py runserver 0.0.0.0:8000
